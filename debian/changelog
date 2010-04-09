@@ -1,3 +1,9 @@
+cuteexplorer (1.1-1) unstable; urgency=low
+
+  * moved to use libqt4
+
+ -- Tommi Asp <tomma.asp@gmail.com>  Fri,  9 Apr 2010 18:37:27 +0300
+
 cuteexplorer (1.1) unstable; urgency=low
 
   * Fixed bluetooth sending, no need to "copy" files first
