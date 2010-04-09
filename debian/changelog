@@ -1,3 +1,13 @@
+cuteexplorer (1.1) unstable; urgency=low
+
+  * Fixed bluetooth sending, no need to "copy" files first
+  * Added context menu for filelistwidget
+  * Actions from edit menu moved to fileslistwidgets contextmenu
+  * Check not to send directories via bluetooth
+  * Added help and about dialogs
+
+ -- Tommi Asp <tomma.asp@gmail.com>  Fri,  9 Apr 2010 18:02:07 +0300
+
 cuteexplorer (1.0-2) unstable; urgency=low
 
   * Fixed broken .desktop -file
