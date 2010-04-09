@@ -250,13 +250,23 @@ void FileListWidget::actionSendFiles()
 #ifdef Q_WS_MAEMO_5
     // Create list of file urls
     QStringList files;
+    QFileInfo file;
     foreach(QModelIndex index, this->selectedIndexes()) {
-        files.append(QUrl::fromLocalFile(fileSystemModel->fileInfo(index)).absoluteFilePath()).toString());
+        file = fileSystemModel->fileInfo(index);
+        if(file.isDir()) {
+            QMessageBox::warning(this,
+                                     tr("Sending files"),
+                                     tr("Sending directories not supported"),
+                                     QMessageBox::Cancel);
+            return;
+        }
+        files.append(QUrl::fromLocalFile(file.absoluteFilePath()).toString());
     }
 
     // Make dbuscall to send files
     QDBusInterface interface("com.nokia.bt_ui", "/com/nokia/bt_ui", "com.nokia.bt_ui",QDBusConnection::systemBus());
-    interface.call("show_send_file_dlg", files);
+    QDBusMessage reply = interface.call(QDBus::Block, "show_send_file_dlg", files);
+
 #else
     QMessageBox::information(this,
                              tr("Sending files"),
