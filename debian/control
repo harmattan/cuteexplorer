@@ -1,0 +1,38 @@
+Source: cuteexplorer
+Section: user/utilities
+Priority: extra
+Maintainer: Tommi Asp <tomma.asp@gmail.com>
+Build-Depends: debhelper (>= 5), libqt4-maemo5-dev, libdbus-1-dev, libhildonmime-dev, libhildonmime-dev
+Standards-Version: 3.7.2
+
+Package: cuteexplorer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Filemanager for maemo5 using Qt
+ Navigate in the real filesystem.
+ Can send files via bluetooth.
+XSBC-Maemo-Display-Name: CuteExplorer
+XB-Maemo-Icon-26:
+ iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA7E
+ AAAOxAGVKw4bAAADfklEQVRoge2ZTWsrVRjHf2eal5tMILdxlbYRym27cJUu
+ pCi34MZFtZvrxg/gQr+ApRuhO6nVnYLQT2AXIsJdiILbG4R7K6ISpoFSLWnv
+ hZjbppPJS3NcJGecvHfy4iSQHxwy88xzcv7/M3POzJwRUkqmGc1rAcMyM+A1
+ U29AACHgEbDgsZa7kgW+lVIWVSANyCkraWBRSoloBABKI+qhcRNs/H4npXyk
+ DHwspfzcmbWzs/NjoTynSTQxV31Z6fevWkDTiBKovahZo1Kq67q+v7//0BkT
+ QuwCnwJFKWXY14gXWitbllX658Huu3IuRPS3XQBisRjr6+tNeWdnZxiGwf33
+ 7xN+GOb5J8+pvqiOxIBlWd93CCutAQBfhwQbf+4XmAva+8VikdPT06acfD4P
+ QOn3EuKeoHZVG1zxAHQ1EAwGM/eyj7+A/waJaZqcnJx0zDefmphPzZGK8/v9
+ PTsYehjQdf3Pg4ODr0eqyCV7e3sf9cuxDQghAsA7wANAbG9vvyGEiIxRX19a
+ NGSAx605ysArwDPgNXXg4uIC4L0xa+xJBw1/AN84c5SBD4EEgKbVny6EEPa2
+ IplMsrm5ORaxR0dHXF5eNsWcGmq1GtQ7+ANnjjKQAFhZWSEajdYDiYSqZBOP
+ x9tio2JtbY2FheanGaeGfD5PJpMBeNWZ0zSIw+Fwz0ZyuRzFYrFnzqBYVu/7
+ XzdtfacpJ8lkkq2tLTdV7szh4SHn5+eu67kykEqlSKVSrhsZJ64MbGxsTPcZ
+ OD4+Jp1Ou27kLhQKbY9jd8KVgVgsxvLy8kANKTKZTNt0OQyuDEQiEZaWloZq
+ MJvNDlW/FVcGDMPAMIyRChiWqX+pnxnwmqYxYJomPl89VKlUiMfjnohSlMtl
+ bm5ubD0tvFQbXi+RDFo+UwvTP0+AGLflJyAgpcQHfAW8BbC6umpfQpNGpVJx
+ vo9/KaUsQ8sYCIVCCCHI5XJUq6NZGhkWn89HLBbr2rFt0evra0qlyVmku729
+ 5erqikik8+t52zQ6rjeuYeilaSruA0KIrsfaDOi63rPC/40QouvlA/Ux8Jfa
+ KRQKzM/Ps7i4ODGXkqZp9sTi4G+1IaifhSfA63Zwgs4AQMuX1CfAm1IFG78J
+ 4Fe8v0H1K89ofNhQRSgjQgg/8DawSv3MTBISOAF+kFI23aDE7EO3x8wMeM3M
+ gNdMvYF/Acd52O0Tf+jGAAAAAElFTkSuQmCC
+XSBC-Bugtracker: https://garage.maemo.org/tracker/?atid=5332&group_id=1469&func=browse

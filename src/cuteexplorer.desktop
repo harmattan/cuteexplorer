@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=CuteExplorer
+Comment=Explore your maemo
+Exec=/usr/bin/cuteexplorer
+Icon=cuteexplorer_icon64

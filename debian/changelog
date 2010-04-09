@@ -1,0 +1,12 @@
+cuteexplorer (1.0-2) unstable; urgency=low
+
+  * Fixed broken .desktop -file
+
+ -- Tommi Asp <tomma.asp@gmail.com>  Mon, 22 Mar 2010 23:07:55 +0200
+
+cuteexplorer (1.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Tommi Asp <tomma.asp@gmail.com>  Mon, 22 Mar 2010 14:09:49 +0200
+
