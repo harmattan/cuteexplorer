@@ -18,6 +18,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionShow_hidden, SIGNAL(toggled(bool)), ui->fileListWidget, SLOT(actionShowHidden(bool)));
     connect(ui->actionRename, SIGNAL(triggered()), ui->fileListWidget, SLOT(actionRename()));
     connect(ui->actionSend, SIGNAL(triggered()), ui->fileListWidget, SLOT(actionSendFiles()));
+
+    connect(ui->actionHelp, SIGNAL(triggered()), this, SLOT(showHelp()));
+    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAbout()));
+
     ui->locationLine->setText(ui->fileListWidget->getPath());
 
 
@@ -63,5 +67,33 @@ void MainWindow::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void MainWindow::showHelp()
+{
+    QString helpText;
+
+    helpText.append("<h2>CuteExplorer "+tr("Help") +"</h2>");
+    helpText.append("<p>"+ tr("Cut, copy, delete, rename, paste and send files")+"<br/>");
+    helpText.append(tr("commands can be found from context menu (click and hold on maemo).")+"<br/>");
+    helpText.append(tr("To select files, use ctrl and shift")+"<br/>");
+    QMessageBox::about(this, tr("Help"),
+                       helpText);
+}
+void MainWindow::showAbout()
+{
+    QString about;
+    about.append("<h2>CuteExplorer</h2>");
+    about.append(tr("<p>Version %1<br/>").arg(QString(CUTE_VERSION)));
+    about.append(tr("Using Qt %1<br/>").arg(QString(QT_VERSION_STR)));
+    about.append(tr("Copyright") + " 2010 Tommi \"tomma\" Asp &lt;tomma.asp@gmail.com&gt;<br/>");
+
+    about.append(tr("<p>CuteExplorer is file manager mainly for maemo5.<br/>"));
+    about.append(tr("This is still under development so please visit<br/>"));
+    about.append(tr("<a href=http://cuteexplorer.garage.maemo.org>http://cuteexplorer.garage.maemo.org</a><br/>"));
+    about.append(tr("to report bugs or leave feature requests. Thanks!</p>"));
+
+    QMessageBox::about(this, tr("About CuteExplorer"),
+                       about);
 }
 

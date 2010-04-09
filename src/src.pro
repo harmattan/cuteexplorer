@@ -13,7 +13,7 @@ FORMS += mainwindow.ui
 TRANSLATIONS += cuteexplorertranslation_fi_FI.ts
 RESOURCES += i18n.qrc
 
-
+DEFINES += CUTE_VERSION=\\\"1.1\\\"
 maemo5 {
     #VARIABLES
     CONFIG += link_pkgconfig
