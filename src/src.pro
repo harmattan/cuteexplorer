@@ -3,7 +3,7 @@
 # -------------------------------------------------
 TARGET = cuteexplorer
 TEMPLATE = app
-
+QT += dbus
 SOURCES += main.cpp \
     mainwindow.cpp \
     filelistwidget.cpp
@@ -19,7 +19,6 @@ maemo5 {
     CONFIG += link_pkgconfig
     PKGCONFIG += dbus-1 gnome-vfs-2.0
     LIBS += -lhildonmime -ldbus-1
-    QT += dbus
     isEmpty(PREFIX) {
         PREFIX = /usr
   }
