@@ -19,6 +19,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionRename, SIGNAL(triggered()), ui->fileListWidget, SLOT(actionRename()));
     connect(ui->actionSend, SIGNAL(triggered()), ui->fileListWidget, SLOT(actionSendFiles()));
     ui->locationLine->setText(ui->fileListWidget->getPath());
+
+
+    ui->fileListWidget->addAction(ui->actionCopy);
+    ui->fileListWidget->addAction(ui->actionCut);
+    ui->fileListWidget->addAction(ui->actionPaste);
+    ui->fileListWidget->addAction(ui->actionDelete);
+    ui->fileListWidget->addAction(ui->actionRename);
+    ui->fileListWidget->addAction(ui->actionSend);
 }
 
 MainWindow::~MainWindow()
