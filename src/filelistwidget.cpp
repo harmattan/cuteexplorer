@@ -14,7 +14,7 @@
 Widget that shows filesystemmodel and handles navigation
 in directory tree and opening files with assosiated programs
 
-@todo in symbian and windows filesystems navigating to "/" wont show drives
+@todo in symbian and windows filesystems navigating to "root" wont show drives
   */
 FileListWidget::FileListWidget(QWidget *parent) :
     QListView(parent),
@@ -48,6 +48,7 @@ void FileListWidget::actionSwitchMode(bool iconmode)
         this->setGridSize(QSize());
     }
 }
+
 /**
   Switches show hidden
   @param show true shows hidden files
@@ -177,7 +178,7 @@ void FileListWidget::actionDelete()
 }
 
 /**
-  @return Current directory
+  @return Current directory shown
   */
 QString FileListWidget::getPath()
 {
@@ -217,6 +218,7 @@ void FileListWidget::handleItemActivation(QModelIndex index)
             QProcess::startDetached(file.absoluteFilePath());
         } else {
 #ifdef Q_WS_MAEMO_5 // Uses native file opening method
+            //TODO: find better solution for this, maybe get fixed in Qt
             DBusConnection* conn;
             conn = dbus_bus_get(DBUS_BUS_SESSION, 0);
             hildon_mime_open_file(conn, QUrl::fromLocalFile(file.absoluteFilePath()).toEncoded().constData());
@@ -240,31 +242,27 @@ void FileListWidget::setSelectMode(bool mode)
     select = mode;
 }
 
+/**
+  Opens native bluetooth dialog to choose receiving device and sends selected files there.
+  */
 void FileListWidget::actionSendFiles()
 {
-    if(!mode_copy) {
-        QMessageBox::information(this,
-                                 tr("Sending files"),
-                                 tr("To send files, select files you want to send and copy them."),
-                                 QMessageBox::Cancel);
-    } else {
 #ifdef Q_WS_MAEMO_5
-        // Create list of file urls
-        QStringList files;
-        while(!selectedFiles.isEmpty()) {
-            files.append(QUrl::fromLocalFile(fileSystemModel->fileInfo(selectedFiles.first()).absoluteFilePath()).toString());
-            selectedFiles.removeFirst();
-        }
-
-        // Make dbuscall to send files
-        QDBusInterface interface("com.nokia.bt_ui", "/com/nokia/bt_ui", "com.nokia.bt_ui",QDBusConnection::systemBus());
-        interface.call("show_send_file_dlg", files);
-#else
-        QMessageBox::information(this,
-                                 tr("Sending files"),
-                                 tr("Only in maemo5 for now"),
-                                 QMessageBox::Cancel);
-#endif
+    // Create list of file urls
+    QStringList files;
+    foreach(QModelIndex index, this->selectedIndexes()) {
+        files.append(QUrl::fromLocalFile(fileSystemModel->fileInfo(index)).absoluteFilePath()).toString());
     }
+
+    // Make dbuscall to send files
+    QDBusInterface interface("com.nokia.bt_ui", "/com/nokia/bt_ui", "com.nokia.bt_ui",QDBusConnection::systemBus());
+    interface.call("show_send_file_dlg", files);
+#else
+    QMessageBox::information(this,
+                             tr("Sending files"),
+                             tr("Only in maemo5 for now"),
+                             QMessageBox::Cancel);
+#endif
+
 }
 
