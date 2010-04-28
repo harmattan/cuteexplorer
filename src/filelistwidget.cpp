@@ -239,6 +239,10 @@ void FileListWidget::handleItemActivation(QModelIndex index)
   */
 void FileListWidget::setSelectMode(bool mode)
 {
+    if(mode)
+        this->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    else
+        this->setSelectionMode(QAbstractItemView::SingleSelection);
     select = mode;
 }
 
