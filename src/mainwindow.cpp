@@ -24,7 +24,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->locationLine->setText(ui->fileListWidget->getPath());
 
+    ui->actionExit->setShortcut(QKeySequence::Quit);
 
+    ui->actionCopy->setShortcut(QKeySequence::Copy);
+    ui->actionCut->setShortcut(QKeySequence::Cut);
+    ui->actionPaste->setShortcut(QKeySequence::Paste);
+    ui->actionDelete->setShortcut(QKeySequence("Ctrl+D"));
+    ui->actionRename->setShortcut(QKeySequence("Ctrl+R"));
+    ui->actionSend->setShortcut(QKeySequence::Save);
     ui->fileListWidget->addAction(ui->actionCopy);
     ui->fileListWidget->addAction(ui->actionCut);
     ui->fileListWidget->addAction(ui->actionPaste);
