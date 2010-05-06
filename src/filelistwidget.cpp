@@ -269,7 +269,7 @@ void FileListWidget::actionSendFiles()
 
     // Make dbuscall to send files
     QDBusInterface interface("com.nokia.bt_ui", "/com/nokia/bt_ui", "com.nokia.bt_ui",QDBusConnection::systemBus());
-    QDBusMessage reply = interface.call(QDBus::Block, "show_send_file_dlg", files);
+    interface.call(QDBus::Block, "show_send_file_dlg", files);
 
 #else
     QMessageBox::information(this,
