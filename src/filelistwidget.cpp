@@ -70,7 +70,7 @@ void FileListWidget::actionRename()
 {
     QFileInfo file = fileSystemModel->fileInfo(this->selectedIndexes().first());
     QString newName = QInputDialog::getText(this, tr("Rename"), tr("New filename: "), QLineEdit::Normal, file.fileName());
-    if(newName != file.fileName())
+    if(newName != file.fileName() && !newName.isEmpty())
     {
         if(QFile::rename(file.absoluteFilePath(), file.absolutePath()+"/"+newName))
             return;
