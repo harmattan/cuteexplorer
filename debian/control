@@ -2,7 +2,7 @@ Source: cuteexplorer
 Section: user/utilities
 Priority: extra
 Maintainer: Tommi Asp <tomma.asp@gmail.com>
-Build-Depends: debhelper (>= 5), libqt4-maemo5-dev, libdbus-1-dev, libhildonmime-dev
+Build-Depends: debhelper (>= 5), libqt4-dev, libdbus-1-dev, libhildonmime-dev
 Standards-Version: 3.7.2
 
 Package: cuteexplorer
@@ -10,7 +10,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Filemanager for maemo5 using Qt
  Navigate in the real filesystem.
- Can send files via bluetooth.
+ Send files via bluetooth.
 XSBC-Maemo-Display-Name: CuteExplorer
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA7E

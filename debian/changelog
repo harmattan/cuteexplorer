@@ -1,3 +1,17 @@
+cuteexplorer (1.1.1-1) unstable; urgency=low
+
+  * release for pr 1.2
+
+ -- Tommi Asp <tomma.asp@gmail.com>  Thu, 27 May 2010 16:42:06 +0300
+
+cuteexplorer (1.1.1) unstable; urgency=low
+
+  * fixed filelist selection bug
+  * added shortcuts for commands
+  * fixed rename failed when canceled renamedialog
+
+ -- Tommi Asp <tomma.asp@gmail.com>  Thu,  6 May 2010 20:44:29 +0300
+
 cuteexplorer (1.1-7) unstable; urgency=low
 
   * shlibs.local added
