@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QTranslator translator;
 
     /* For some reason QLocale::system() returns
-    locale by LC_NUMERIC environment variable which is
+    locale by LC_NUMERIC environment variable in linux which is
     meant for numerics like thousand separator etc.
 
     In this solution we get locale from LANG environment variable
