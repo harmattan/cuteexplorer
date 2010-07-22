@@ -29,7 +29,7 @@ FileListWidget::FileListWidget(QWidget *parent) :
     fileSystemModel->setRootPath(currentDir.absolutePath());
     fileSystemModel->setFilter(fileSystemModel->filter() | QDir::System);
     connect(this, SIGNAL(activated(QModelIndex)), this, SLOT(handleItemActivation(QModelIndex)));
-
+    setSelectMode(false);
 }
 
 /**
@@ -80,6 +80,7 @@ void FileListWidget::actionRename()
                                     .arg(file.fileName())
                                   ,QMessageBox::Ok);
     }
+    setSelectMode(false);
 }
 /**
   Selected files will be moved when actionPaste is called
@@ -145,6 +146,7 @@ void FileListWidget::actionPaste()
     }
     fileSystemModel->setReadOnly(true);
     this->clearSelection();
+    setSelectMode(false);
 }
 
 /**
@@ -175,6 +177,7 @@ void FileListWidget::actionDelete()
         fileSystemModel->setReadOnly(true);
         this->clearSelection();
     }
+    setSelectMode(false);
 }
 
 /**
@@ -197,6 +200,7 @@ void FileListWidget::changePath(QString path)
     this->clearSelection();
     this->setRootIndex(fileSystemModel->index(newPath));
     emit pathChanged(newPath);
+    setSelectMode(false);
 }
 
 /**
@@ -233,6 +237,7 @@ void FileListWidget::handleItemActivation(QModelIndex index)
 #endif
         }
     }
+    setSelectMode(false);
 }
 /**
   @param mode true activates file selection
@@ -277,6 +282,6 @@ void FileListWidget::actionSendFiles()
                              tr("Only in maemo5 for now"),
                              QMessageBox::Cancel);
 #endif
-
+    setSelectMode(false);
 }
 

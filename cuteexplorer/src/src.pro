@@ -42,3 +42,9 @@ maemo5 {
     icon.path = $$DATADIR/icons/hicolor/scalable/apps
     icon.files += $${TARGET}_icon.svg
 }
+
+OTHER_FILES += \
+    cuteexplorer_icon48.png \
+    cuteexplorer_icon.svg \
+    cuteexplorer.desktop \
+    cuteexplorer_icon64.png
