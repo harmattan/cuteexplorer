@@ -1,12 +1,11 @@
-This package was debianized by unknown <tomma.asp@gmail.com> on
+This package was debianized by Tommi Asp <tommi@mowhi.com> on
 Mon, 22 Mar 2010 15:26:30 +0200.
 
 It was downloaded from <fill in http/ftp site>
 
-Upstream Author: <put author(s) name and email here>
+Upstream Author: Tommi Asp <tommi@mowhi.com>
 
-Copyright: <put the year(s) of the copyright, and the names of the
-            copyright holder(s) here>
+Copyright: 2010 Tommi Asp
 
 License:
 
@@ -26,11 +25,3 @@ License:
 
 On Debian systems, the complete text of the GNU Lesser General
 Public License can be found in `/usr/share/common-licenses/LGPL'.
-
-
-The Debian packaging is (C) 2010, unknown <tomma.asp@gmail.com> and
-is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
-
-
-# Please also look if there are files or directories which have a
-# different copyright/license attached and list them here.

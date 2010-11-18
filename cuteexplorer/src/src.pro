@@ -3,7 +3,7 @@
 # -------------------------------------------------
 TARGET = cuteexplorer
 TEMPLATE = app
-QT += dbus
+
 SOURCES += main.cpp \
     mainwindow.cpp \
     filelistwidget.cpp \
@@ -16,7 +16,11 @@ FORMS += mainwindow.ui \
 TRANSLATIONS += cuteexplorertranslation_fi_FI.ts
 RESOURCES += i18n.qrc
 DEFINES += CUTE_VERSION=\\\"1.2\\\"
-maemo5 { 
+
+unix {
+    QT += dbus
+}
+maemo5 {
     # VARIABLES
     CONFIG += link_pkgconfig
     PKGCONFIG += dbus-1 \
@@ -28,7 +32,7 @@ maemo5 {
     DATADIR = $$PREFIX/share
     DEFINES += DATADIR=\\\"$$DATADIR\\\" \
         PKGDATADIR=\\\"$$PKGDATADIR\\\"
-    
+
     # MAKE INSTALL
     INSTALLS += target \
         desktop \
