@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QModelIndexList>
-
+#include <QIcon>
 class QFileSystemModel;
 class QDeclarativeView;
 class QDeclarativeError;
@@ -22,7 +22,9 @@ public slots:
     bool fileIsSelected(const QModelIndex &index);
     void clearSelection();
     void openFile(const QModelIndex &index);
+    void openPath(const QString &path);
     int stateChange(QDeclarativeItem* item);
+    QIcon iconFromTheme(const QString &iconName);
 
 private slots:
    void declarativeErrors(const QList<QDeclarativeError> &errors);

@@ -10,6 +10,7 @@
 #include <QApplication>
 #include <QTimer>
 
+
 #ifdef MEEGO_EDITION_HARMATTAN
 #include <MDeclarativeCache>
 #endif
@@ -62,17 +63,29 @@ void Core::showAbout()
 void Core::openFile(const QModelIndex &index)
 {
     QFileInfo file = m_fileSystemModel->fileInfo(index);
+    const QString filePath = file.absoluteFilePath();
     if (file.isDir()) {
-        qDebug() << "Opening path" << file.absoluteFilePath();
-        m_fileSystemModel->setRootPath(file.absoluteFilePath());
+        qDebug() << "Opening path" << filePath;
+        m_fileSystemModel->setRootPath(filePath);
         QObject *viewModel =
                 m_declarativeView->rootObject()->findChild<QObject*>("viewModel");
         viewModel->setProperty("rootIndex", qVariantFromValue<QModelIndex>(index));
+        QObject *locationText =
+                m_declarativeView->rootObject()->findChild<QObject*>("locationText");
+        locationText->setProperty("text", filePath);
         clearSelection();
     } else {
-        qDebug() << "QDesktopServices::openUrl(" << QUrl::fromLocalFile(file.absoluteFilePath()) << ")";
-        QDesktopServices::openUrl(QUrl::fromLocalFile(file.absoluteFilePath()));
+        qDebug() << "QDesktopServices::openUrl(" << QUrl::fromLocalFile(filePath) << ")";
+        QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
     }
+}
+
+void Core::openPath(const QString &path)
+{
+    QFileInfo file(path);
+    if (!file.exists() && !file.isDir())
+        return;
+    openFile(m_fileSystemModel->index(path));
 }
 
 void Core::declarativeErrors(const QList<QDeclarativeError> &errors)
@@ -117,5 +130,12 @@ int Core::stateChange(QDeclarativeItem *item)
 
     return 0;
 }
+
+QIcon Core::iconFromTheme(const QString &iconName)
+{
+    return QIcon::fromTheme(iconName);
+}
+
+
 
 
