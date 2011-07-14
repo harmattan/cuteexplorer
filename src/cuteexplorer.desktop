@@ -4,5 +4,5 @@ Version=1.2
 Type=Application
 Name=CuteExplorer
 Comment=Explore your maemo
-Exec=/usr/bin/cuteexplorer
-Icon=cuteexplorer_icon64
+Exec=/usr/bin/invoker --single-instance --type=d /opt/bin/cuteexplorer
+Icon=cuteexplorer_icon

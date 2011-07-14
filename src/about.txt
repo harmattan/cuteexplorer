@@ -1,0 +1,5 @@
+<h2>CuteExplorer</h2>
+<p>Version %CUTEVERSION%<br/>
+Built with Qt %QTVERSION%<br/>
+Copyright 2010 - 2011 <a href=mailto:tommi@mowhi.com>Tommi Asp</a><br/>
+<p>CuteExplorer is file manager mainly for mobile devices.</p>

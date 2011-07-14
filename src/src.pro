@@ -3,52 +3,42 @@
 # -------------------------------------------------
 TARGET = cuteexplorer
 TEMPLATE = app
+QT += declarative
 
-SOURCES += main.cpp \
-    mainwindow.cpp \
-    filelistwidget.cpp \
-    searchdialog.cpp
-HEADERS += mainwindow.h \
-    filelistwidget.h \
-    searchdialog.h
-FORMS += mainwindow.ui \
-    searchdialog.ui
+SOURCES += \
+    main.cpp \
+    core.cpp
+
+HEADERS += \
+    core.h
+
+FORMS +=
+
 TRANSLATIONS += cuteexplorertranslation_fi_FI.ts
-RESOURCES += i18n.qrc
+
+RESOURCES += i18n.qrc \
+    qml.qrc
+
 DEFINES += CUTE_VERSION=\\\"1.2\\\"
 
-unix {
-    QT += dbus
-}
-maemo5 {
-    # VARIABLES
-    CONFIG += link_pkgconfig
-    PKGCONFIG += dbus-1 \
-        gnome-vfs-2.0
-    LIBS += -lhildonmime \
-        -ldbus-1
-    isEmpty(PREFIX):PREFIX = /usr
-    BINDIR = $$PREFIX/bin
-    DATADIR = $$PREFIX/share
-    DEFINES += DATADIR=\\\"$$DATADIR\\\" \
-        PKGDATADIR=\\\"$$PKGDATADIR\\\"
-
-    # MAKE INSTALL
-    INSTALLS += target \
-        desktop \
-        icon \
-        icon64
-    target.path = $$BINDIR
-    desktop.path = $$DATADIR/applications/hildon
-    desktop.files += $${TARGET}.desktop
-    icon64.path = $$DATADIR/icons/hicolor/64x64/apps
-    icon64.files += $${TARGET}_icon64.png
-    icon.path = $$DATADIR/icons/hicolor/scalable/apps
-    icon.files += $${TARGET}_icon.svg
-}
+CONFIG += qdeclarative-boostable
 
 OTHER_FILES += \
-    cuteexplorer_icon48.png \
     cuteexplorer_icon.svg \
     cuteexplorer.desktop \
-    cuteexplorer_icon64.png
+    cuteexplorer_icon64.png \
+    qml/view.qml \
+    about.txt
+
+unix:!symbian {
+    target.path = /opt/bin
+    INSTALLS += target
+
+    desktopfile.files = $${TARGET}.desktop
+    desktopfile.path = /usr/share/applications
+    INSTALLS += desktopfile
+
+    icon.files = cuteexplorer_icon.svg
+    icon.path = /usr/share/icons/hicolor/scalable/apps
+    INSTALLS += icon
+}
