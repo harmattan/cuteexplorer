@@ -11,7 +11,7 @@ Rectangle {
     Item {
         id: openArea
         objectName: "openArea"
-        height: 150
+        height: 100
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: locationText.bottom
@@ -39,7 +39,7 @@ Rectangle {
         id: selectionArea
         objectName: "selectionArea"
         y: 381
-        height: 150
+        height: 100
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: parent.bottom
@@ -77,7 +77,7 @@ Rectangle {
                     name: "selected"
                     PropertyChanges {
                         target: modelItem
-                        y: fileView.height/2 + 120
+                        y: fileView.height/2 + 100
 
                     }
                 },
@@ -130,8 +130,10 @@ Rectangle {
                         coreObject.openFile(viewModel.modelIndex(index))
                     } else if (stateChange == 2) {
                         coreObject.fileSelected(viewModel.modelIndex(index) , true)
+                        state = "selected"
                     } else {
                         coreObject.fileSelected(viewModel.modelIndex(index) , false)
+                        state = ""
                     }
                 }
             }
@@ -213,7 +215,7 @@ Rectangle {
         anchors.left: locationText.right
         anchors.top: parent.top
         QIconItem {
-            icon: coreObject.iconFromTheme("go-previous")
+            icon: coreObject.iconFromTheme("back")
             anchors.fill: parent
         }
 

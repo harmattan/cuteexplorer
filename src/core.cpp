@@ -36,6 +36,8 @@ Core::Core(QDeclarativeView *parent) :
 //    m_declarativeView->rootObject()->findChild<QDeclarativeItem*>("fileViewObj");
 
     m_declarativeView->resize(854,480);
+
+    openPath(QDesktopServices::storageLocation(QDesktopServices::HomeLocation));
 }
 
 Core::~Core()
@@ -63,9 +65,11 @@ void Core::showAbout()
 void Core::openFile(const QModelIndex &index)
 {
     QFileInfo file = m_fileSystemModel->fileInfo(index);
-    const QString filePath = file.absoluteFilePath();
+    const QString filePath = m_fileSystemModel->filePath(index);
+    if (filePath == "")
+        return;
     if (file.isDir()) {
-        qDebug() << "Opening path" << filePath;
+//        qDebug() << "Opening path" << filePath;
         m_fileSystemModel->setRootPath(filePath);
         QObject *viewModel =
                 m_declarativeView->rootObject()->findChild<QObject*>("viewModel");
@@ -75,7 +79,7 @@ void Core::openFile(const QModelIndex &index)
         locationText->setProperty("text", filePath);
         clearSelection();
     } else {
-        qDebug() << "QDesktopServices::openUrl(" << QUrl::fromLocalFile(filePath) << ")";
+//        qDebug() << "QDesktopServices::openUrl(" << QUrl::fromLocalFile(filePath) << ")";
         QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
     }
 }
@@ -102,9 +106,9 @@ void Core::fileSelected(const QModelIndex &index, bool selected)
     else if (!selected)
         m_selection.removeAll(index);
 
-    qDebug() << "Selection:";
-    foreach (const QModelIndex &index, m_selection)
-        qDebug() << index.data();
+//    qDebug() << "Selection:";
+//    foreach (const QModelIndex &index, m_selection)
+//        qDebug() << index.data();
 }
 
 bool Core::fileIsSelected(const QModelIndex &index)
@@ -133,7 +137,7 @@ int Core::stateChange(QDeclarativeItem *item)
 
 QIcon Core::iconFromTheme(const QString &iconName)
 {
-    return QIcon::fromTheme(iconName);
+    return QIcon::fromTheme(iconName, QIcon(":/icons/icon-m-startup-back.png"));
 }
 
 

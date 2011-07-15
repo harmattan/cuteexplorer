@@ -36,11 +36,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //    a->installTranslator(&translator);
 #ifdef MEEGO_EDITION_HARMATTAN
     QDeclarativeView *v = MDeclarativeCache::qDeclarativeView();
+    v->showMaximized();
 #else
     QDeclarativeView *v = new QDeclarativeView;
+    v->show();
 #endif
     Core *c = new Core(v);
-    v->show();
+
     int ret = a->exec();
     delete a;
     return ret;

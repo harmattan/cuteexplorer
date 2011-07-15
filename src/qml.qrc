@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/view.qml</file>
+        <file>icons/icon-m-startup-back.png</file>
     </qresource>
 </RCC>
