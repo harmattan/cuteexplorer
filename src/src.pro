@@ -3,7 +3,7 @@
 # -------------------------------------------------
 TARGET = cuteexplorer
 TEMPLATE = app
-QT += declarative
+QT += core gui declarative dbus
 
 SOURCES += \
     main.cpp \
@@ -14,21 +14,25 @@ HEADERS += \
 
 FORMS +=
 
-TRANSLATIONS += cuteexplorertranslation_fi_FI.ts
-
 RESOURCES += i18n.qrc \
     qml.qrc
 
 DEFINES += CUTE_VERSION=\\\"1.2\\\"
 
-CONFIG += qdeclarative-boostable
+CONFIG += qdeclarative-boostable \ # does not work with Harmattan-meego... needs the nokia thing... beta bug?
+        shareuiinterface-maemo-meegotouch # for shareui to work
+
+#fixes boostable thing
+QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
+QMAKE_LFLAGS += -pie -rdynamic
+
 
 OTHER_FILES += \
     cuteexplorer_icon.svg \
     cuteexplorer.desktop \
     cuteexplorer_icon64.png \
-    qml/view.qml \
-    about.txt
+    about.txt \
+    qml/harmattanui.qml
 
 unix:!symbian {
     target.path = /opt/bin

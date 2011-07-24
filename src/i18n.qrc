@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>cuteexplorertranslation_fi_FI.qm</file>
         <file>about.txt</file>
     </qresource>
 </RCC>
