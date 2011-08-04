@@ -1,32 +1,69 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64" height="64" id="svg2383">
-  <defs id="defs2385">
-    <linearGradient id="linearGradient3203">
-      <stop id="stop3205" style="stop-color: rgb(47, 47, 47); stop-opacity: 1;" offset="0"/>
-      <stop id="stop3207" style="stop-color: rgb(25, 25, 25); stop-opacity: 1;" offset="1"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="80" width="80">
+ <defs>
+  <linearGradient id="hicg_overlay_grad" gradientUnits="userSpaceOnUse" x1="39.9995" y1="5.1816" x2="39.9995" y2="58.8019">
+   <stop offset="0" style="stop-color:#FFFFFF"/>
+   <stop offset="1" style="stop-color:#000000"/>
+  </linearGradient>
+  <filter id="hicg_drop_shadow">
+    <feOffset in="SourceAlpha" dx="0" dy="4"/>
+    <feGaussianBlur stdDeviation="4"/>
+	<feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.5 0" result="shadow"/>
+    <feBlend in="SourceGraphic" in2="shadow" mode="normal"/>
+  </filter>
+ </defs>
+ <g>
+  <path id="hicg_background" fill="#0a0e27" d="M79,40c0,28.893-10.105,39-39,39S1,68.893,1,40C1,11.106,11.105,1,40,1S79,11.106,79,40z"/>
+  <path id="hicg_highlight" fill="#fff" opacity="0.25" d="M39.999,1C11.105,1,1,11.106,1,40c0,28.893,10.105,39,38.999,39   C68.896,79,79,68.893,79,40C79,11.106,68.896,1,39.999,1z M39.999,78.025C11.57,78.025,1.976,68.43,1.976,40   c0-28.429,9.595-38.024,38.023-38.024c28.43,0,38.024,9.596,38.024,38.024C78.023,68.43,68.429,78.025,39.999,78.025z"/>
+  <path id="hicg_overlay" opacity="0.4" fill="url(#hicg_overlay_grad)" d="M78.977,40c0,28.893-10.1,39-38.977,39S1.023,68.893,1.023,40c0-28.894,10.1-39,38.977-39S78.977,11.106,78.977,40z"/>
+ </g>
+<g xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" transform="translate(12, 12) scale(0.7)">
+  <defs xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" id="defs3014">
+    <linearGradient id="linearGradient3767">
+      <stop style="stop-color:#000653;stop-opacity:1;" offset="0" id="stop3769"/>
+      <stop style="stop-color:#4454b1;stop-opacity:1;" offset="1" id="stop3771"/>
     </linearGradient>
-    <linearGradient id="linearGradient3171">
-      <stop id="stop3173" style="stop-color: rgb(81, 81, 81); stop-opacity: 1;" offset="0"/>
-      <stop id="stop3175" style="stop-color: rgb(22, 22, 22); stop-opacity: 1;" offset="1"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3767" id="linearGradient3773" x1="28.447458" y1="4.5030918" x2="30.774078" y2="-16.461687" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.2208905,0,0,1.2208905,11.919141,-8.7620481)"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3767-1" id="linearGradient3773-9" x1="28.447458" y1="4.5030918" x2="30.774078" y2="-16.461687" gradientUnits="userSpaceOnUse"/>
+    <linearGradient id="linearGradient3767-1">
+      <stop style="stop-color:#000653;stop-opacity:1;" offset="0" id="stop3769-2"/>
+      <stop style="stop-color:#000d5b;stop-opacity:0.74301678;" offset="1" id="stop3771-8"/>
     </linearGradient>
-    <radialGradient cx="31.643028" cy="8.0269022" r="18.113558" fx="31.643028" fy="8.0269022" id="radialGradient3177" xlink:href="#linearGradient3171" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-2.86067e-07, 1.26887, -1.16834, 0, 40.9694, -26.5322)"/>
-    <linearGradient x1="9.3691645" y1="13.265088" x2="9.3691645" y2="36.072021" id="linearGradient3209" xlink:href="#linearGradient3203" gradientUnits="userSpaceOnUse"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3767-0" id="linearGradient3773-6" x1="28.447458" y1="4.5030918" x2="30.774078" y2="-16.461687" gradientUnits="userSpaceOnUse"/>
+    <linearGradient id="linearGradient3767-0">
+      <stop style="stop-color:#000653;stop-opacity:1;" offset="0" id="stop3769-6"/>
+      <stop style="stop-color:#4454b1;stop-opacity:1;" offset="1" id="stop3771-4"/>
+    </linearGradient>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3767-5" id="linearGradient3773-94" x1="28.447458" y1="4.5030918" x2="30.774078" y2="-16.461687" gradientUnits="userSpaceOnUse" gradientTransform="translate(2.9047586,4.4202849)"/>
+    <linearGradient id="linearGradient3767-5">
+      <stop style="stop-color:#000653;stop-opacity:1;" offset="0" id="stop3769-4"/>
+      <stop style="stop-color:#4454b1;stop-opacity:1;" offset="1" id="stop3771-6"/>
+    </linearGradient>
+    <linearGradient y2="-16.461687" x2="30.774078" y1="4.5030918" x1="28.447458" gradientTransform="matrix(1.2208905,0,0,1.2208905,-5.6523721,10.769837)" gradientUnits="userSpaceOnUse" id="linearGradient3882" xlink:href="#linearGradient3767-5" inkscape:collect="always"/>
+    <filter id="filter4171" inkscape:label="Drop shadow" width="1.5" height="1.5" x="-.25" y="-.25">
+      <feGaussianBlur id="feGaussianBlur4173" in="SourceAlpha" stdDeviation="1.4" result="blur"/>
+      <feColorMatrix id="feColorMatrix4175" result="bluralpha" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0 "/>
+      <feOffset id="feOffset4177" in="bluralpha" dx="0" dy="4" result="offsetBlur"/>
+      <feMerge id="feMerge4179">
+        <feMergeNode id="feMergeNode4181" in="offsetBlur"/>
+        <feMergeNode id="feMergeNode4183" in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <g id="layer1">
-    <rect width="52.38591" height="30.383835" rx="3.047076" ry="3.047076" x="5.807045" y="21.418575" id="rect2395" style="opacity: 1; fill: rgb(51, 51, 51); fill-opacity: 1; stroke: rgb(0, 0, 0); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <rect width="56.568539" height="28.833637" rx="2.3849602" ry="2.3849602" x="3.7157307" y="11.497321" id="rect2393" style="opacity: 1; fill: url(&quot;#linearGradient3209&quot;) rgb(0, 0, 0); fill-opacity: 1; stroke: rgb(0, 0, 0); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <rect width="46.342133" height="6.2007828" rx="2.1137414" ry="2.1137414" x="8.8289337" y="42.985096" id="rect2397" style="opacity: 1; fill: rgb(22, 22, 22); fill-opacity: 1; stroke: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <rect width="41.477116" height="24.803131" rx="0" ry="0" x="11.261442" y="13.357556" id="rect3169" style="opacity: 1; fill: url(&quot;#radialGradient3177&quot;) rgb(0, 0, 0); fill-opacity: 1; stroke: rgb(128, 128, 128); stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <g transform="translate(0.125, 1.625)" id="g3189">
-      <path d="M 17.6875,21.25 L 45.8125,21.25" id="path3181" style="fill: none; fill-rule: evenodd; stroke: rgb(230, 230, 230); stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;"/>
-      <path d="M 17.6875,24.208333 L 45.8125,24.208333" id="path3183" style="fill: none; fill-rule: evenodd; stroke: rgb(230, 230, 230); stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;"/>
-      <path d="M 17.6875,27.166667 L 45.8125,27.166667" id="path3185" style="fill: none; fill-rule: evenodd; stroke: rgb(230, 230, 230); stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;"/>
-      <path d="M 17.6875,30.125 L 38.570012,30.125" id="path3187" style="fill: none; fill-rule: evenodd; stroke: rgb(230, 230, 230); stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;"/>
+  <sodipodi:namedview xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="7.9180417" inkscape:cx="14.999472" inkscape:cy="43.622766" inkscape:current-layer="layer1" showgrid="true" inkscape:grid-bbox="true" inkscape:document-units="px" inkscape:window-width="1920" inkscape:window-height="1013" inkscape:window-x="-2" inkscape:window-y="-3" inkscape:window-maximized="1"/>
+  <metadata xmlns="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" id="metadata3017">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer" transform="translate(0,48)">
+    <g id="g3901" style="filter:url(#filter4171)">
+      <path id="path3035" sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" d="m 26.569827,-35.621638 c 8.048383,2.312865 22.737782,-3.593611 21.976029,6.104453 l 24.417809,0 0,28.0804809 -46.393838,0 0,-28.0804809 21.976029,0 -21.976029,0 z" style="fill:url(#linearGradient3773);fill-opacity:1;stroke:#000000;stroke-width:3.66267133;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"/>
+      <path id="path3035-6" sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" d="m 8.9983127,-16.089753 c 8.0483833,2.312864 22.7377823,-3.593613 21.9760293,6.1044521 l 24.417809,0 0,28.0804809 -46.3938383,0 0,-28.0804809 21.9760293,0 -21.9760293,0 z" style="fill:url(#linearGradient3882);fill-opacity:1;stroke:#000000;stroke-width:3.66267133;stroke-linejoin:round;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"/>
     </g>
-    <rect width="40.9375" height="3.8125" rx="0" ry="0" x="11.53125" y="13.625" id="rect3211" style="opacity: 1; fill: rgb(102, 102, 102); fill-opacity: 1; stroke: none; stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <path d="M 17.5,15.3125 A 0.6875,0.6875 0 1 1 16.125,15.3125 A 0.6875,0.6875 0 1 1 17.5,15.3125 z" transform="matrix(1.72727, 0, 0, 1.72727, -15.6023, -11.1989)" id="path3179" style="opacity: 1; fill: rgb(85, 153, 255); fill-opacity: 1; stroke: none; stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <path d="M 17.5,15.3125 A 0.6875,0.6875 0 1 1 16.125,15.3125 A 0.6875,0.6875 0 1 1 17.5,15.3125 z" transform="matrix(1.72727, 0, 0, 1.72727, -1.66477, -11.1989)" id="path3218" style="opacity: 1; fill: rgb(128, 255, 128); fill-opacity: 1; stroke: none; stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1;"/>
-    <path d="M 18,15.375 L 24,15.375" id="path3220" style="fill: none; fill-rule: evenodd; stroke: rgb(230, 230, 230); stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;"/>
   </g>
-</svg>
+</g></svg>

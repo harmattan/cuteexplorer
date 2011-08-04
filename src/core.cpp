@@ -10,8 +10,6 @@
 #include <QApplication>
 #include <QTimer>
 #include <QAction>
-#include <QDBusInterface>
-#include <QDBusPendingCall>
 #include <maemo-meegotouch-interfaces/shareuiinterface.h>
 
 Q_DECLARE_METATYPE(QModelIndex)
@@ -75,9 +73,7 @@ void Core::openFile(const QModelIndex &index)
         QObject *viewModel =
                 m_declarativeView->rootObject()->findChild<QObject*>("viewModel");
         viewModel->setProperty("rootIndex", qVariantFromValue<QModelIndex>(index));
-        QObject *locationText =
-                m_declarativeView->rootObject()->findChild<QObject*>("locationText");
-        locationText->setProperty("text", filePath);
+        emit currentPathChanged(filePath);
         clearSelection();
     } else {
         //        qDebug() << "QDesktopServices::openUrl(" << QUrl::fromLocalFile(filePath) << ")";
@@ -106,6 +102,8 @@ void Core::fileSelected(const QModelIndex &index, bool selected)
         m_selection.append(index);
     else if (!selected)
         m_selection.removeAll(index);
+
+    emit filesSelectedChanged(!m_selection.isEmpty());
 }
 
 bool Core::fileIsSelected(const QModelIndex &index)
@@ -116,6 +114,7 @@ bool Core::fileIsSelected(const QModelIndex &index)
 void Core::clearSelection()
 {
     m_selection.clear();
+    emit filesSelectedChanged(false);
 }
 
 int Core::stateChange(QDeclarativeItem *item)
@@ -148,6 +147,7 @@ void Core::actionCut()
 {
     m_currentAction = Cut;
     m_itemsForAction = m_selection;
+    emit filesInClipboardChanged(true);
     qDebug() << "cut";
 }
 
@@ -155,6 +155,7 @@ void Core::actionCopy()
 {
     m_currentAction = Copy;
     m_itemsForAction = m_selection;
+    emit filesInClipboardChanged(true);
     qDebug() << "copy";
 }
 
@@ -164,12 +165,14 @@ void Core::actionPaste()
             && m_currentAction != Copy)
         return;
     qDebug() << "paste";
-    m_selection.clear();
+    clearSelection();
     QStringList failed;
     QModelIndexList actionItems = m_itemsForAction;
     m_itemsForAction.clear();
     if (m_currentAction == Cut) {
         foreach (const QModelIndex &index, actionItems) {
+            if (!index.isValid())
+                continue;
             QFileInfo file = m_fileSystemModel->fileInfo(index);
             QString newFileName =
                     m_fileSystemModel->rootPath().append(QLatin1Char('/')).append(file.fileName());
@@ -178,13 +181,15 @@ void Core::actionPaste()
                 failed.append(file.absoluteFilePath());
             } else {
                 m_itemsForAction.append(index);
-                m_selection.append(m_fileSystemModel->index(newFileName));
+                fileSelected(m_fileSystemModel->index(newFileName));
             }
         }
         m_currentAction = NoAction;
         actionDelete();
     } else {
         foreach (const QModelIndex &index, actionItems) {
+            if (!index.isValid())
+                continue;
             QFileInfo file = m_fileSystemModel->fileInfo(index);
             QString newFileName =
                     m_fileSystemModel->rootPath().append(QLatin1Char('/')).append(file.fileName());
@@ -192,10 +197,11 @@ void Core::actionPaste()
                              newFileName))
                 failed.append(file.absoluteFilePath());
             else
-                m_selection.append(m_fileSystemModel->index(newFileName));
+                fileSelected(m_fileSystemModel->index(newFileName));
         }
         m_currentAction = NoAction;
     }
+    emit filesInClipboardChanged(false);
     if (!failed.isEmpty()) {
         qDebug() << "Paste failed for:";
         qDebug() << failed;
@@ -207,9 +213,17 @@ void Core::actionDelete()
     qDebug() << "delete";
     QStringList failed;
     foreach (const QModelIndex &index, m_itemsForAction) {
-        QFileInfo file = m_fileSystemModel->fileInfo(index);
-        if (!QFile::remove(file.absoluteFilePath()))
-            failed.append(file.absoluteFilePath());
+        if(!index.isValid())
+            continue;
+
+        bool success = false;
+        if (m_fileSystemModel->isDir(index))
+            success = m_fileSystemModel->rmdir(index);
+        else
+            success = m_fileSystemModel->remove(index);
+
+        if (!success)
+            failed.append(m_fileSystemModel->filePath(index));
         else
             m_selection.removeAll(index);
     }
@@ -226,12 +240,31 @@ void Core::actionShare()
     qDebug() << "share";
     QStringList filesToShare;
     foreach (const QModelIndex &index, m_selection) {
-        filesToShare.append(m_fileSystemModel->fileInfo(index).canonicalFilePath().prepend("file://"));
+        if (index.isValid())
+            filesToShare.append(m_fileSystemModel->fileInfo(index).canonicalFilePath().prepend("file://"));
     }
 
     // does not work for all files???...
     ShareUiInterface shareIf("com.nokia.ShareUi");
     shareIf.share(filesToShare);
+}
+
+bool Core::showHidden() const
+{
+    return m_fileSystemModel->filter() & QDir::Hidden;
+}
+
+void Core::setShowHidden(bool show)
+{
+    m_fileSystemModel->setFilter(show ?
+                                     m_fileSystemModel->filter() | QDir::Hidden
+                                   : m_fileSystemModel->filter() &~QDir::Hidden);
+    emit showHiddenChanged(show);
+}
+
+QString Core::currentPath() const
+{
+    return m_fileSystemModel->rootPath();
 }
 
 

@@ -1,5 +1,5 @@
 cuteexplorer (1.1.9) unstable; urgency=low
 
-  * Initial Release.
+  * Beta release with QML UI
 
- -- unknown <tomma@unknown>  Fri, 15 Jul 2011 00:11:56 +0300
+ -- Tommi Asp <tommi@mowhi.com>  Fri, 15 Jul 2011 00:11:56 +0300

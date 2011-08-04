@@ -125,7 +125,6 @@ Window {
                     drag.onActiveChanged: {
                         if (drag.active) {
                             showAreas.start()
-                            modelItem.dragStart = y
                             modelItem.dragging = true
                         } else {
                             hideAreas.start()
@@ -138,17 +137,17 @@ Window {
                         var stateChange = coreObject.stateChange(modelItem)
                         if (stateChange == 1) {
                             coreObject.openFile(viewModel.modelIndex(index))
-                            y = dragStart
+                            y = fileView.height/2 -40
                         } else if (stateChange == 2) {
                             coreObject.fileSelected(viewModel.modelIndex(index) , true)
                             if (state == "selected")
-                                y = dragStart
+                                y = fileView.height/2 + 100
                             else
                                 state = "selected"
                         } else {
                             coreObject.fileSelected(viewModel.modelIndex(index) , false)
                             if (state == "")
-                                y = dragStart
+                                y = fileView.height/2 -40
                             else
                                 state = ""
                         }
@@ -188,19 +187,22 @@ Window {
         TextField {
             id: locationText
             objectName: "locationText"
-            text: ""
-            //            color: "#FFFFFF"
+            text: coreObject.currentPath
             anchors.right: content.right
             anchors.left: content.left
             anchors.top: content.top
             height: 40
+            inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
             width: parent.width
-            //            font.pixelSize: 20
-            //            onAccepted: {
-            //                locationText.focus = false
-            //                fileView.focus = true
-            //                coreObject.openPath(text)
-            //            }
+            platformSipAttributes:  SipAttributes {
+                actionKeyLabel: "Go to"
+                actionKeyHighlighted: true
+                actionKeyEnabled: true
+            }
+            Keys.onReturnPressed: {
+                fileView.forceActiveFocus()
+                coreObject.openPath(text)
+            }
         }
         PropertyAnimation {
             id: showAreas
@@ -226,62 +228,91 @@ Window {
                 ToolIcon {
                     iconSource: "icon-m-toolbar-cut".concat(theme.inverted ? "-white" : "");
                     onClicked: coreObject.invokeAction(1);
-//                    visible: false
+                    enabled: coreObject.filesSelected
+                    opacity: enabled ? 1.0 : 0.3
                 }
                 ToolIcon {
                     iconSource: "icon-m-toolbar-copy".concat(theme.inverted ? "-white" : "");
                     onClicked: coreObject.invokeAction(2);
-//                    visible: false
+                    enabled: coreObject.filesSelected
+                    opacity: enabled ? 1.0 : 0.3
                 }
                 ToolIcon {
                     iconSource: "icon-m-toolbar-paste".concat(theme.inverted ? "-white" : "");
                     onClicked: coreObject.invokeAction(3);
-//                    visible: false
+                    enabled: coreObject.filesInClipboard
+                    opacity: enabled ? 1.0 : 0.3
                 }
                 ToolIcon {
                     iconSource: "icon-m-toolbar-delete".concat(theme.inverted ? "-white" : "");
                     onClicked: deleteDialog.open()
-
-
-//                    visible: false
+                    enabled: coreObject.filesSelected
+                    opacity: enabled ? 1.0 : 0.3
                 }
                 ToolIcon {
                     iconSource: "icon-m-toolbar-share".concat(theme.inverted ? "-white" : "");
                     onClicked: coreObject.invokeAction(5);
-//                    visible: false
+                    enabled: coreObject.filesSelected
+                    opacity: enabled ? 1.0 : 0.3
                 }
                 ToolIcon {
                     iconId: "toolbar-back";
                     onClicked: coreObject.openFile(viewModel.parentModelIndex())
                 }
+                ToolIcon {
+                    iconId: "toolbar-tools";
+                    onClicked: settingsDialog.open()
+                }
             }
 
         }
-
     }
 
-    Dialog {
+    QueryDialog {
         id: deleteDialog
-        title:
-            Label {text:"Are you sure?"}
-        content: Label { text:"You are about to delete files." }
-        buttons: ButtonRow {
-            Button {
-                id: yesButton
-                text: "Yes"
-                onClicked: deleteDialog.accept()
-            }
-            Button {
-                id: noButton
-                text: "No"
-                onClicked: deleteDialog.reject()
+        titleText:  "Are you sure?"
+        message: "You are about to delete files."
+        acceptButtonText: "Yes"
+        rejectButtonText: "No"
+        onAccepted: coreObject.invokeAction(4); // invoke delete
+        visualParent: root
+    }
+
+    Sheet {
+        id: settingsDialog
+        title: Label { anchors.top: parent.top; anchors.topMargin: 16; anchors.horizontalCenter: parent.horizontalCenter; text: "CuteExplorer"}
+        acceptButtonText: "Ok"
+        rejectButtonText: "Cancel"
+        content: Flickable {
+            anchors.fill: parent
+            anchors.leftMargin: 10
+            anchors.topMargin: 10
+            contentWidth: col2.width
+            contentHeight: col2.height
+            flickableDirection: Flickable.VerticalFlick
+            Column {
+                id: col2
+                anchors.top: parent.top
+                spacing: 20
+                Row {
+                    spacing: 20
+                    Label {
+                        anchors.verticalCenter: sShowHidden.verticalCenter
+                        id:lShowHidden
+                        text: "Show Hidden"
+                    }
+                    Switch {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        id: sShowHidden
+                        checked: coreObject.showHidden
+                    }
+                }
             }
         }
-        onAccepted: coreObject.invokeAction(4); // invoke delete
-        onStatusChanged:
-            if (status == DialogStatus.Open) {
-                noButton.pressed = false
-                yesButton.pressed = false
-            }
+        visualParent: root
+        onAccepted:
+            coreObject.showHidden = sShowHidden.checked
+        onRejected: sShowHidden.checked = coreObject.showHidden
     }
 }
