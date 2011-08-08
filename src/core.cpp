@@ -10,7 +10,10 @@
 #include <QApplication>
 #include <QTimer>
 #include <QAction>
+
+#ifdef MEEGO_EDITION_HARMATTAN
 #include <maemo-meegotouch-interfaces/shareuiinterface.h>
+#endif
 
 Q_DECLARE_METATYPE(QModelIndex)
 
@@ -26,7 +29,7 @@ Core::Core(QDeclarativeView *parent) :
     m_fileSystemModel->setRootPath("/");
     m_declarativeView->rootContext()->setContextProperty("fileSystemModel", m_fileSystemModel);
     m_declarativeView->rootContext()->setContextProperty("coreObject", this);
-    m_declarativeView->setSource(QUrl("qrc:/view.qml"));
+    m_declarativeView->setSource(QUrl("qrc:/Ui.qml"));
 
     connect(m_declarativeView->engine(), SIGNAL(warnings(QList<QDeclarativeError>)),
             this, SLOT(declarativeErrors(QList<QDeclarativeError>)));
@@ -52,13 +55,6 @@ void Core::showHelp()
 void Core::showAbout()
 {
 
-    QFile txt(":/about.txt");
-    txt.open(QFile::ReadOnly);
-    QString about(txt.readAll());
-    about.replace("%CUTEVERSION%", "1.2");
-    about.replace("%QTVERSION%", QT_VERSION_STR);
-    QMessageBox msg(QMessageBox::Information, tr("About CuteExplorer"), about, QMessageBox::Ok);
-    msg.exec();
 }
 
 void Core::openFile(const QModelIndex &index)
@@ -244,9 +240,13 @@ void Core::actionShare()
             filesToShare.append(m_fileSystemModel->fileInfo(index).canonicalFilePath().prepend("file://"));
     }
 
+#ifdef MEEGO_EDITION_HARMATTAN
     // does not work for all files???...
     ShareUiInterface shareIf("com.nokia.ShareUi");
     shareIf.share(filesToShare);
+#else
+    qWarning() << "No support for current platform";
+#endif
 }
 
 bool Core::showHidden() const

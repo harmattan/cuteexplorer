@@ -15,7 +15,7 @@ HEADERS += \
 FORMS +=
 
 RESOURCES += \
-    qml.qrc
+    qml_harmattan.qrc
 
 DEFINES += CUTE_VERSION=\\\"1.2\\\"
 
@@ -32,7 +32,10 @@ OTHER_FILES += \
     cuteexplorer_icon.svg \
     cuteexplorer.desktop \
     cuteexplorer_icon64.png \
-    qml/harmattanui.qml
+    qml_harmattan/FileDelegate.qml \
+    qml_harmattan/Ui.qml \
+    qml_harmattan/qmldir \
+    qml_harmattan/SettingsSheet.qml
 
 unix:!symbian {
     target.path = /opt/bin

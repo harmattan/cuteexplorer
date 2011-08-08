@@ -1,6 +1,7 @@
 import QtQuick 1.1
-import org.kde.qtextracomponents 0.1
+
 import com.nokia.meego 1.0
+import "." 1.0
 
 Window {
 
@@ -69,97 +70,19 @@ Window {
             }
         }
 
-        Component {
-            id: fileDelegate
 
-            Item {
-                id: modelItem
-                width: 64; height: 80
-                property bool dragging: false
-                property int dragStart
-                y: fileView.height/2 -40
-                state: (coreObject.fileIsSelected(viewModel.modelIndex(index)) ?
-                            "selected"
-                          : "")
-                states: [
-                    State {
-                        name: "selected"
-                        PropertyChanges {
-                            target: modelItem
-                            y: fileView.height/2 + 100
-
-                        }
-                    },
-                    State {
-                        name: ""
-                        PropertyChanges {
-                            target: modelItem
-                            y: fileView.height/2 -40
-                        }
-                    }
-                ]
-
-                QIconItem {
-                    id: myIcon
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: 48
-                    height: 48
-                    icon: fileIcon
-                }
-
-                Text {
-                    anchors { top: myIcon.bottom; horizontalCenter: parent.horizontalCenter }
-                    width: modelItem.width
-                    text: fileName
-                    color: "#FFFFFF"
-                    horizontalAlignment: Text.AlignHCenter
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    drag.target: modelItem
-                    drag.axis: "YAxis"
-                    drag.minimumY: 0
-                    drag.maximumY: content.height - modelItem.height
-                    drag.onActiveChanged: {
-                        if (drag.active) {
-                            showAreas.start()
-                            modelItem.dragging = true
-                        } else {
-                            hideAreas.start()
-                            modelItem.dragging = false
-                        }
-                    }
-                }
-                onDraggingChanged: {
-                    if (!dragging) {
-                        var stateChange = coreObject.stateChange(modelItem)
-                        if (stateChange == 1) {
-                            coreObject.openFile(viewModel.modelIndex(index))
-                            y = fileView.height/2 -40
-                        } else if (stateChange == 2) {
-                            coreObject.fileSelected(viewModel.modelIndex(index) , true)
-                            if (state == "selected")
-                                y = fileView.height/2 + 100
-                            else
-                                state = "selected"
-                        } else {
-                            coreObject.fileSelected(viewModel.modelIndex(index) , false)
-                            if (state == "")
-                                y = fileView.height/2 -40
-                            else
-                                state = ""
-                        }
-                    }
-                }
-            }
-        }
 
         VisualDataModel {
             id: viewModel
             objectName: "viewModel"
-            delegate: fileDelegate
+            delegate: Component {
+                FileDelegate {
+                    lineCenter: fileView.height/2 -40
+                    lineSelected: fileView.height/2 + 100
+                    onDragStart: showAreas.start()
+                    onDragStop: hideAreas.start()
+                }
+            }
             model: fileSystemModel
         }
 
@@ -264,7 +187,6 @@ Window {
                     onClicked: settingsDialog.open()
                 }
             }
-
         }
     }
 
@@ -303,7 +225,6 @@ Window {
                     }
                     Switch {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
                         id: sShowHidden
                         checked: coreObject.showHidden
                     }

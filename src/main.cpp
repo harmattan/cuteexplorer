@@ -27,6 +27,5 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     int ret = a->exec();
     delete v;
     delete a;
-    delete c;
     return ret;
 }

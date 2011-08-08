@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="icon-m-toolbar-copy">qml_harmattan/icons/icon-m-toolbar-copy.png</file>
+        <file alias="icon-m-toolbar-cut">qml_harmattan/icons/icon-m-toolbar-cut.png</file>
+        <file alias="icon-m-toolbar-paste">qml_harmattan/icons/icon-m-toolbar-paste.png</file>
+        <file alias="icon-m-toolbar-copy-white">qml_harmattan/icons/icon-m-toolbar-copy-white.png</file>
+        <file alias="icon-m-toolbar-cut-white">qml_harmattan/icons/icon-m-toolbar-cut-white.png</file>
+        <file alias="icon-m-toolbar-paste-white">qml_harmattan/icons/icon-m-toolbar-paste-white.png</file>
+        <file alias="icon-m-toolbar-back-white">qml_harmattan/icons/icon-m-toolbar-back-white.png</file>
+        <file alias="icon-m-toolbar-back">qml_harmattan/icons/icon-m-toolbar-back.png</file>
+        <file alias="icon-m-toolbar-delete-white">qml_harmattan/icons/icon-m-toolbar-delete-white.png</file>
+        <file alias="icon-m-toolbar-delete">qml_harmattan/icons/icon-m-toolbar-delete.png</file>
+        <file alias="icon-m-toolbar-share-white">qml_harmattan/icons/icon-m-toolbar-share-white.png</file>
+        <file alias="icon-m-toolbar-share">qml_harmattan/icons/icon-m-toolbar-share.png</file>
+        <file alias="Ui.qml">qml_harmattan/Ui.qml</file>
+        <file alias="FileDelegate.qml">qml_harmattan/FileDelegate.qml</file>
+        <file>qml_harmattan/qmldir</file>
+    </qresource>
+</RCC>
