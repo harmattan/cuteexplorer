@@ -5,6 +5,9 @@ TARGET = cuteexplorer
 TEMPLATE = app
 QT += core gui declarative
 
+#untill it is really set in target
+DEFINES += MEEGO_EDITION_HARMATTAN
+
 SOURCES += \
     main.cpp \
     core.cpp
