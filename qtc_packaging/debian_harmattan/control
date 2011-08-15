@@ -8,7 +8,7 @@ Homepage: https://gitorious.org/cuteexplorer/
 
 Package: cuteexplorer
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtextracomponents (>= 0.1.0)
 Description: File manager
  Handle files and share them
 XSBC-Maemo-Display-Name: CuteExplorer
