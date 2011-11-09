@@ -3,18 +3,18 @@ import com.nokia.meego 1.0
 
 Sheet {
     id: settingsDialog
-    title: Label { anchors.top: parent.top; anchors.topMargin: 16; anchors.horizontalCenter: parent.horizontalCenter; text: "CuteExplorer Settings"}
+    title: Label { anchors.top: parent.top; anchors.topMargin: 16; anchors.horizontalCenter: parent.horizontalCenter; text: "CuteExplorer"}
     acceptButtonText: "Ok"
     rejectButtonText: "Cancel"
     content: Flickable {
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.topMargin: 10
-        contentWidth: col.width
-        contentHeight: col.height
+        contentWidth: column.width
+        contentHeight: column.height
         flickableDirection: Flickable.VerticalFlick
         Column {
-            id: col
+            id: column
             anchors.top: parent.top
             spacing: 20
             Row {
@@ -32,8 +32,6 @@ Sheet {
             }
         }
     }
-
-    onAccepted: {
-        coreObject.showHidden = sShowHidden.checked
-    }
+    onAccepted: coreObject.showHidden = sShowHidden.checked
+    onRejected: sShowHidden.checked = coreObject.showHidden
 }

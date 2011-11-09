@@ -15,5 +15,6 @@
         <file alias="Ui.qml">qml_harmattan/Ui.qml</file>
         <file alias="FileDelegate.qml">qml_harmattan/FileDelegate.qml</file>
         <file>qml_harmattan/qmldir</file>
+        <file alias="SettingsSheet.qml">qml_harmattan/SettingsSheet.qml</file>
     </qresource>
 </RCC>

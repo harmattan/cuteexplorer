@@ -24,7 +24,8 @@ Core::Core(QDeclarativeView *parent) :
 {
     qmlRegisterUncreatableType<Core>("Core", 0, 1, "Core", QString("You cant create Core!"));
     m_declarativeView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
-    m_declarativeView->setAttribute(Qt::WA_LockLandscapeOrientation);
+    m_declarativeView->setAttribute(Qt::WA_AutoOrientation);
+
     m_fileSystemModel = new QFileSystemModel(this);
     m_fileSystemModel->setRootPath("/");
     m_declarativeView->rootContext()->setContextProperty("fileSystemModel", m_fileSystemModel);

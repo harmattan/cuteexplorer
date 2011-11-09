@@ -147,7 +147,13 @@ Window {
                            ? ToolBarVisibility.HiddenImmediately : ToolBarVisibility.Visible
         tools: ToolBarLayout {
             ToolButtonRow {
-
+                Item {} // aligns to right?
+                ToolIcon {
+                    iconId: "toolbar-add"
+                    onClicked: coreObject.newFileFolder();
+//                    enabled:
+                    opacity: enabled ? 1.0 : 0.3
+                }
                 ToolIcon {
                     iconSource: "icon-m-toolbar-cut".concat(theme.inverted ? "-white" : "");
                     onClicked: coreObject.invokeAction(1);
@@ -184,7 +190,7 @@ Window {
                 }
                 ToolIcon {
                     iconId: "toolbar-tools";
-                    onClicked: settingsDialog.open()
+                    onClicked: settingsSheet.open()
                 }
             }
         }
@@ -199,41 +205,7 @@ Window {
         onAccepted: coreObject.invokeAction(4); // invoke delete
         visualParent: root
     }
-
-    Sheet {
-        id: settingsDialog
-        title: Label { anchors.top: parent.top; anchors.topMargin: 16; anchors.horizontalCenter: parent.horizontalCenter; text: "CuteExplorer"}
-        acceptButtonText: "Ok"
-        rejectButtonText: "Cancel"
-        content: Flickable {
-            anchors.fill: parent
-            anchors.leftMargin: 10
-            anchors.topMargin: 10
-            contentWidth: col2.width
-            contentHeight: col2.height
-            flickableDirection: Flickable.VerticalFlick
-            Column {
-                id: col2
-                anchors.top: parent.top
-                spacing: 20
-                Row {
-                    spacing: 20
-                    Label {
-                        anchors.verticalCenter: sShowHidden.verticalCenter
-                        id:lShowHidden
-                        text: "Show Hidden"
-                    }
-                    Switch {
-                        anchors.verticalCenter: parent.verticalCenter
-                        id: sShowHidden
-                        checked: coreObject.showHidden
-                    }
-                }
-            }
-        }
-        visualParent: root
-        onAccepted:
-            coreObject.showHidden = sShowHidden.checked
-        onRejected: sShowHidden.checked = coreObject.showHidden
+    SettingsSheet {
+        id: settingsSheet
     }
 }
