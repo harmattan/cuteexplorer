@@ -5,9 +5,6 @@ TARGET = cuteexplorer
 TEMPLATE = app
 QT += core gui declarative
 
-#untill it is really set in target
-DEFINES += MEEGO_EDITION_HARMATTAN
-
 SOURCES += \
     main.cpp \
     core.cpp
@@ -20,16 +17,12 @@ FORMS +=
 RESOURCES += \
     qml_harmattan.qrc
 
-DEFINES += CUTE_VERSION=\\\"1.2\\\"
-
-CONFIG += qdeclarative-boostable \ # does not work with harmattan-platform-api ...
+CONFIG += qdeclarative-boostable \
         shareuiinterface-maemo-meegotouch # for shareui to work ( does not work in harmattan-nokia-meego-api)
 
-
-#fix for qdeclarative-boostable with harmattan-platform-api
-#QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
-#QMAKE_LFLAGS += -pie -rdynamic
-
+contains(MEEGO_EDITION,harmattan) {
+DEFINES += MEEGO_EDITION_HARMATTAN
+}
 
 OTHER_FILES += \
     cuteexplorer_icon.svg \
