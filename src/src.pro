@@ -7,10 +7,12 @@ QT += core gui declarative
 
 SOURCES += \
     main.cpp \
-    core.cpp
+    core.cpp \
+    qiconitem.cpp
 
 HEADERS += \
-    core.h
+    core.h \
+    qiconitem.h
 
 FORMS +=
 
