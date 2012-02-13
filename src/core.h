@@ -24,7 +24,7 @@ public:
         Share
     };
 
-    explicit Core(QDeclarativeView *parent = 0);
+    explicit Core(QDeclarativeView *view = 0);
     ~Core();
 
     // Property bool showHidden

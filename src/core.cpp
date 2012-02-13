@@ -17,9 +17,9 @@
 
 Q_DECLARE_METATYPE(QModelIndex)
 
-Core::Core(QDeclarativeView *parent) :
-    QObject(parent)
-  , m_declarativeView(parent)
+Core::Core(QDeclarativeView *view) :
+    QObject(view)
+  , m_declarativeView(view)
   , m_currentAction(NoAction)
 {
     qmlRegisterUncreatableType<Core>("Core", 0, 1, "Core", QString("You cant create Core!"));

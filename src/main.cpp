@@ -6,6 +6,7 @@
 #include <QtCore/QtGlobal>
 #include <QDeclarativeView>
 #include <qdeclarative.h>
+#include <QScopedPointer>
 
 #ifdef MEEGO_EDITION_HARMATTAN
 #include <MDeclarativeCache>
@@ -15,19 +16,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     qmlRegisterType<QIconItem>("org.kde.qtextracomponents", 0, 1, "QIconItem");
 #ifndef MEEGO_EDITION_HARMATTAN
-    QApplication *a = new QApplication(argc, argv);
-    QDeclarativeView *v = new QDeclarativeView;
+    QScopedPointer<QApplication> a(new QApplication(argc, argv));
+    QScopedPointer<QDeclarativeView> v( new QDeclarativeView);
     v->showFullScreen();
 #else
-    QApplication *a = MDeclarativeCache::qApplication(argc, argv);
-    QDeclarativeView *v = MDeclarativeCache::qDeclarativeView();
+    QScopedPointer<QApplication> a(MDeclarativeCache::qApplication(argc, argv));
+    QScopedPointer<QDeclarativeView> v(MDeclarativeCache::qDeclarativeView());
     v->showFullScreen();
 #endif
 
-    Core *c = new Core(v);
+    QScopedPointer<Core> c(new Core(v.data()));
 
-    int ret = a->exec();
-    delete v;
-    delete a;
-    return ret;
+    return a->exec();
 }
